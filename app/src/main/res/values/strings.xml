@@ -1,0 +1,23 @@
+<resources>
+    <string name="app_name">ND940C3-Project</string>
+    <string name="app_description">Download files from Internet</string>
+    <string name="action_settings">Settings</string>
+
+
+    <string name="notification_title">Udacity: Android Kotlin Nanodegree </string>
+    <string name="notification_description">The Project 3 repository is downloaded</string>
+    <string name="notification_button">See changes</string>
+
+    <string name="button_name">Click me</string>
+    <string name="button_loading">We are loading </string>
+    <string name="title_activity_detail">DetailActivity</string>
+
+    <!-- Main page strings -->
+    <string name="glide_radio_button_text">Glide - Image Loading Library by BumpTech</string>
+    <string name="loadapp_radio_button_text">LoadApp - Current Repository by Udacity</string>
+    <string name="retrofit_radio_button_text">Retrofit - Type-safe HTTP client for Android by Square, Inc.</string>
+
+    <!-- Detail page strings -->
+    <string name="file_name_label">Field Name: </string>
+    <string name="status_label">Status: </string>
+</resources>
