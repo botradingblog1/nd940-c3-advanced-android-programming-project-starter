@@ -19,6 +19,8 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.NotificationCompat
 import androidx.core.content.ContextCompat
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
 import com.udacity.utils.cancelNotifications
 import com.udacity.utils.sendNotification
 import kotlinx.android.synthetic.main.activity_main.*
@@ -36,6 +38,7 @@ class MainActivity : AppCompatActivity() {
     private var downloadID: Long = 0
     private var selectedDownloadType = SelectedDownloadType.TYPE_GLIDE
     private lateinit var downloadManager: DownloadManager
+    private var fileName = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -48,14 +51,16 @@ class MainActivity : AppCompatActivity() {
 
         custom_button.setOnClickListener {
             when(selectedDownloadType) {
-                SelectedDownloadType.TYPE_GLIDE -> download(GLIDE_URL)
-                SelectedDownloadType.TYPE_UDACITY -> download(UDACITY_URL)
-                SelectedDownloadType.TYPE_RETROFIT -> download(RETROFIT_URL)
+                SelectedDownloadType.TYPE_GLIDE -> { download(GLIDE_URL); fileName = GLIDE_URL}
+                SelectedDownloadType.TYPE_UDACITY -> { download(UDACITY_URL); fileName = UDACITY_URL}
+                SelectedDownloadType.TYPE_RETROFIT -> { download(RETROFIT_URL); fileName = RETROFIT_URL}
             }
         }
 
         // Create notification channel
         createNotificationChannel(getString(R.string.download_status_notification_channel_id), getString(R.string.download_status_notification_channel_name))
+
+        Toast.makeText(this, "Please select one of the download options", Toast.LENGTH_LONG).show()
     }
 
     fun onRadioButtonClicked(view: View) {
@@ -89,6 +94,9 @@ class MainActivity : AppCompatActivity() {
 
             val action = intent.action
             if (action == DownloadManager.ACTION_DOWNLOAD_COMPLETE) {
+                var message = ""
+                var success = false
+
                 val downloadId = intent.getLongExtra(DownloadManager.EXTRA_DOWNLOAD_ID, -1)
                 if (downloadId != downloadID) {
                     return
@@ -103,9 +111,13 @@ class MainActivity : AppCompatActivity() {
                         val columnIndex = cursor.getColumnIndex(DownloadManager.COLUMN_STATUS)
                         if (DownloadManager.STATUS_SUCCESSFUL == cursor.getInt(columnIndex)) {
                             Log.d(TAG, "download successful")
+                            success = true
+                            message = getString(R.string.download_success)
 
                         } else if (DownloadManager.STATUS_FAILED == cursor.getInt(columnIndex)) {
                             Log.d(TAG, "download failed")
+                            success = false
+                            message = getString(R.string.download_failed)
                         }
                     }
                     cursor.close()
@@ -120,8 +132,7 @@ class MainActivity : AppCompatActivity() {
                 notificationManager.cancelNotifications()
 
                 notificationManager.sendNotification(
-                    context.getText(R.string.download_complete).toString(),
-                    context
+                    message, fileName, success, context
                 )
             }
         }
@@ -136,7 +147,6 @@ class MainActivity : AppCompatActivity() {
                 .setAllowedOverMetered(true)
                 .setAllowedOverRoaming(true)
 
-        //val downloadManager = getSystemService(DOWNLOAD_SERVICE) as DownloadManager
         downloadID =
             downloadManager.enqueue(request)// enqueue puts the download request in the queue.
     }

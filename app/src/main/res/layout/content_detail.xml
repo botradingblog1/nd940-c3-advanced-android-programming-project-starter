@@ -1,61 +1,60 @@
-<?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.motion.widget.MotionLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/motion_layout"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:padding="@dimen/page_layout_padding"
-    app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context=".DetailActivity"
-    tools:showIn="@layout/activity_detail"
-    app:layoutDescription="@xml/detail_layout_motions">
+ <androidx.constraintlayout.motion.widget.MotionLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/motion_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="@dimen/page_layout_padding"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        tools:context=".DetailActivity"
+        tools:showIn="@layout/activity_detail"
+        app:layoutDescription="@xml/detail_layout_motions">
 
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/vertical_guide"
-        android:layout_height="wrap_content"
-        android:layout_width="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.4"
-        />
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/vertical_guide"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.4"
+            />
 
-    <TextView
-        android:id="@+id/textview_file_name_label"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/vertical_form_spacing"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintEnd_toStartOf="parent"
-        android:text="@string/file_name_label"/>
+        <TextView
+            android:id="@+id/textview_file_name_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/vertical_form_spacing"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toStartOf="parent"
+            android:text="@string/file_name_label"/>
 
-    <TextView
-        android:id="@+id/textview_file_name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textColor="@color/colorPrimaryDark"
-        android:layout_marginTop="@dimen/vertical_form_spacing"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintEnd_toStartOf="parent"
-        android:text="file value"/>
+        <TextView
+            android:id="@+id/textview_file_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorPrimaryDark"
+            android:layout_marginTop="@dimen/vertical_form_spacing"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toStartOf="parent"
+            android:text="@{viewModel.file}"/>
 
-    <TextView
-        android:id="@+id/textview_status_label"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/vertical_form_spacing"
-        app:layout_constraintTop_toBottomOf="@id/textview_file_name"
-        app:layout_constraintEnd_toStartOf="parent"
-        android:text="@string/status_label"/>
+        <TextView
+            android:id="@+id/textview_status_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/vertical_form_spacing"
+            app:layout_constraintTop_toBottomOf="@id/textview_file_name"
+            app:layout_constraintEnd_toStartOf="parent"
+            android:text="@string/status_label"/>
 
-    <TextView
-        android:id="@+id/textview_status"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/vertical_form_spacing"
-        android:textColor="@color/colorPrimaryDark"
-        app:layout_constraintTop_toBottomOf="@id/textview_file_name"
-        app:layout_constraintEnd_toStartOf="@id/vertical_guide"
-        android:text="status value"/>
+        <TextView
+            android:id="@+id/textview_status"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/vertical_form_spacing"
+            android:textColor="@color/colorPrimaryDark"
+            app:layout_constraintTop_toBottomOf="@id/textview_file_name"
+            app:layout_constraintEnd_toStartOf="@id/vertical_guide"
+            android:text="@{viewModel.status}"/>
 
-</androidx.constraintlayout.motion.widget.MotionLayout>
+    </androidx.constraintlayout.motion.widget.MotionLayout>
