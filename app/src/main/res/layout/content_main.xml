@@ -53,8 +53,8 @@
         android:layout_margin="20dp"
         app:buttonText="@string/download_button_text"
         app:buttonTextInProgress="@string/download_button_in_progress_text"
-        app:backgroundColor="@color/colorPrimary"
-        app:backgroundColorInProgress="@color/colorPrimaryDark"
+        app:backgroundColor="@color/colorPrimaryDark"
+        app:backgroundColorInProgress="@color/colorPrimary"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
