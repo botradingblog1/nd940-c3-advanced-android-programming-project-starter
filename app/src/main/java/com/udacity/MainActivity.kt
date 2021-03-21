@@ -21,6 +21,7 @@ import androidx.core.app.NotificationCompat
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import com.udacity.custom_widgets.ButtonState
 import com.udacity.utils.cancelNotifications
 import com.udacity.utils.sendNotification
 import kotlinx.android.synthetic.main.activity_main.*
@@ -50,6 +51,7 @@ class MainActivity : AppCompatActivity() {
         registerReceiver(receiver, IntentFilter(DownloadManager.ACTION_DOWNLOAD_COMPLETE))
 
         custom_button.setOnClickListener {
+            custom_button.buttonState = ButtonState.Clicked
             when(selectedDownloadType) {
                 SelectedDownloadType.TYPE_GLIDE -> { download(GLIDE_URL); fileName = GLIDE_URL}
                 SelectedDownloadType.TYPE_UDACITY -> { download(UDACITY_URL); fileName = UDACITY_URL}
@@ -94,6 +96,10 @@ class MainActivity : AppCompatActivity() {
 
             val action = intent.action
             if (action == DownloadManager.ACTION_DOWNLOAD_COMPLETE) {
+                // Set button state
+                custom_button.buttonState = ButtonState.Completed
+
+                // Evaluate result
                 var message = ""
                 var success = false
 
@@ -149,6 +155,9 @@ class MainActivity : AppCompatActivity() {
 
         downloadID =
             downloadManager.enqueue(request)// enqueue puts the download request in the queue.
+
+        // Set button state
+        custom_button.buttonState = ButtonState.Loading
     }
 
     private fun createNotificationChannel(channelId: String, channelName: String) {
@@ -178,9 +187,7 @@ class MainActivity : AppCompatActivity() {
         private const val UDACITY_URL =
             "https://github.com/udacity/nd940-c3-advanced-android-programming-project-starter/archive/master.zit"
         private const val RETROFIT_URL = "https://github.com/square/retrofit/archive/refs/heads/master.zip"
-
         // Notifications
         private const val CHANNEL_ID = "channelId"
     }
-
 }

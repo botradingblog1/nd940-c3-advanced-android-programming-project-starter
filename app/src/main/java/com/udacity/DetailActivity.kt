@@ -17,8 +17,6 @@ class DetailActivity : AppCompatActivity() {
         setContentView(R.layout.activity_detail)
         setSupportActionBar(toolbar)
 
-        //motionLayout = findViewById(R.id.motion_layout)
-
         binding = ActivityDetailBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
@@ -36,8 +34,6 @@ class DetailActivity : AppCompatActivity() {
         binding.viewModel = viewModel
         binding.lifecycleOwner = this
 
-
-
         binding.root
     }
 
@@ -51,5 +47,4 @@ class DetailActivity : AppCompatActivity() {
     private fun startTransitions() {
         motionLayout.transitionToState(R.id.end_state)
     }
-
 }

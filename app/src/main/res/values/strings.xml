@@ -24,4 +24,9 @@
     <string name="notification_button">See changes</string>
     <string name="download_success">Download completed successfully</string>
     <string name="download_failed">Download failed</string>
+
+    <!-- Loading button -->
+    <string name="download_button_text">Start download</string>
+    <string name="download_button_in_progress_text">Download in progress</string>
+
 </resources>
