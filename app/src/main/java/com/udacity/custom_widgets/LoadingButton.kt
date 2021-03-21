@@ -1,4 +1,4 @@
-package com.udacity
+package com.udacity.custom_widgets
 
 import android.animation.ValueAnimator
 import android.content.Context
